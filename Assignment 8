@@ -1,0 +1,109 @@
+boolean mState = false;
+PImage renge;
+PImage renge2;
+PImage eagle;
+PImage boom;
+PImage boom2;
+Eagle e = new Eagle(width/2, 2);
+Fly f;
+Timer t;
+
+void setup() {
+  size(1920, 1080);
+  renge = loadImage("renge.png");
+  renge2 = loadImage("renge2.png");
+  eagle = loadImage("eagle.png");
+  boom = loadImage("boom.png");
+  boom2 = loadImage("boom2.png");
+  f = new Fly();
+  t = new Timer(10000);
+}
+
+void draw(){
+  if (mState == false){
+image(renge, 0, 0);
+  }else if (t.isFinished()){
+image(boom, 0, 0);
+   } else { 
+image(renge2, 0, 0);
+}
+ 
+   e.update();
+   f.display();
+   f.move();
+  
+}
+
+void mousePressed(){
+  mState = !mState;
+}
+
+class Eagle {
+  float ypos, speed;
+  Eagle (float y, float s) {
+    ypos = y;
+    speed = s;
+  }  
+  void update() {
+  ypos += speed;
+  if (ypos > width) {
+    ypos = 0;
+  }
+  image(eagle, ypos, 0);
+}
+}
+
+class Fly{
+  int centerX, centerY;
+  
+  Fly(){
+    centerX = (width/2);
+    centerY = (width/2);
+  }
+  
+  void display(){
+    image(eagle ,centerX, centerY);
+}
+
+void move() {
+  if(keyPressed){
+    if(key == 'w'){
+        centerY = centerY - 2;
+      } 
+      if(key == 'a'){
+        centerX = centerX - 2;
+      }
+      if(key == 'd'){
+        centerX = centerX + 2;
+      } 
+      if(key == 's'){
+        centerY = centerY + 2;
+      }
+  }
+}
+}
+
+class Timer{
+  int savedTime;  // When Timer started
+  int totalTime;  // How long Timer should last
+  
+  // The constructor, set how long the Timer last with integer value
+  Timer(int _totalTime){
+    totalTime = _totalTime;
+  }
+  
+  // Start the Timer
+  void start() {
+    savedTime = millis();
+  }
+  
+  boolean isFinished() {
+   // check how much time has passed
+   int passedTime = millis() - savedTime;
+   if (passedTime > totalTime) {
+     return true;
+   } else {
+     return false;
+   }
+  }
+}
