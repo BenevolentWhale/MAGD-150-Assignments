@@ -1,0 +1,70 @@
+PImage pizza;
+PImage pineapple;
+PImage ricecake;
+PImage steve;
+PImage salamander;
+Salamander s1 = new Salamander(width/2, 2.0);
+Salamander2 s2 = new Salamander2(width/2, 2.0);
+
+void setup() {
+  size(1280, 720);
+  pizza = loadImage("pizza.png");
+  pineapple = loadImage("pineapple.png");
+  ricecake = loadImage("ricecake.png");
+  steve = loadImage("steve.png");
+  salamander = loadImage("salamander.png");
+}
+
+void draw() {
+  if (keyPressed) {
+    if (key == 'w') {
+      fill(255);
+      rect(0, 0, 1280, 720);
+      image(pizza, 0, 0);
+    } else if (key == 's') {
+      rect(0, 0, 1280, 720);
+      image(pineapple, 0, 0);
+    } else if (key == 'a') {
+      rect(0, 0, 1280, 720);
+      image(ricecake, 0, 0);
+    } else if (key == 'd') { 
+      rect(0, 0, 1280, 720);
+      image(steve, 0, 0);
+    } else {
+        rect(0, 0, 1280, 720);
+        
+      }
+  }
+ s1.update();
+ s2.update();
+ 
+}
+
+class Salamander {
+  float ypos, speed; 
+  Salamander (float y, float s) {  
+    ypos = y; 
+    speed = s; 
+  } 
+  void update() { 
+    ypos += speed; 
+    if (ypos > height) { 
+      ypos = 0; 
+    } 
+    image(salamander, ypos, 0); 
+  } 
+} 
+class Salamander2 {
+  float ypos, speed; 
+  Salamander2 (float y, float s) {  
+    ypos = y; 
+    speed = s; 
+  } 
+  void update() { 
+    ypos += speed; 
+    if (ypos > height) { 
+      ypos = 0; 
+    } 
+    image(salamander, -ypos, 0); 
+  } 
+} 
