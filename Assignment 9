@@ -13,8 +13,8 @@ void setup () {
   loc[i] = loadImage( str(i) + ".jpg");
   
   
-  pilgrim = loadImage("pilgrim.png");
-  turk = loadImage("turk.png");
+  pilgrim = loadImage("https://cloud.githubusercontent.com/assets/14263648/11770319/c1adb4b0-a1c0-11e5-846b-656ef3baa7ca.png");
+  turk = loadImage("https://cloud.githubusercontent.com/assets/14263648/11770318/c1ad0178-a1c0-11e5-89c3-682b0994cf7d.png");
 
   o = new Timer(10000);
 }
