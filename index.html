@@ -15,7 +15,116 @@
   <h1>Your Sketch1 Title</h1>
   <script type="text/processing" data-processing-target="mycanvas1">
   
-  <!-- Your sketch1 goes here -->
+  boolean mState = false;
+PImage renge;
+PImage renge2;
+PImage eagle;
+PImage boom;
+PImage boom2;
+Eagle e = new Eagle(width/2, 2);
+Fly f;
+Timer t;
+
+void setup() {
+  size(1920, 1080);
+  renge = loadImage("https://cloud.githubusercontent.com/assets/14263648/11695283/0010d818-9e74-11e5-9b9b-470a9291c134.png");
+  renge2 = loadImage("https://cloud.githubusercontent.com/assets/14263648/11695289/03a702c2-9e74-11e5-8a76-ea7dd9f8cf9a.png");
+  eagle = loadImage("https://cloud.githubusercontent.com/assets/14263648/11695297/0adb1574-9e74-11e5-883e-b2a81f838938.png");
+  boom = loadImage("https://cloud.githubusercontent.com/assets/14263648/11695294/0ad6297e-9e74-11e5-933f-1e1294f3d743.png");
+  boom2 = loadImage("https://cloud.githubusercontent.com/assets/14263648/11695296/0ada4e5a-9e74-11e5-97dc-eee172e4d1ac.png");
+  f = new Fly();
+  t = new Timer(10000);
+}
+
+void draw(){
+  if (mState == false){
+image(renge, 0, 0);
+  }else if (t.isFinished()){
+image(boom, 0, 0);
+   } else { 
+image(renge2, 0, 0);
+}
+ 
+   e.update();
+   f.display();
+   f.move();
+  
+}
+
+void mousePressed(){
+  mState = !mState;
+}
+
+class Eagle {
+  float ypos, speed;
+  Eagle (float y, float s) {
+    ypos = y;
+    speed = s;
+  }  
+  void update() {
+  ypos += speed;
+  if (ypos > width) {
+    ypos = 0;
+  }
+  image(eagle, ypos, 0);
+}
+}
+
+class Fly{
+  int centerX, centerY;
+  
+  Fly(){
+    centerX = (width/2);
+    centerY = (width/2);
+  }
+  
+  void display(){
+    image(eagle ,centerX, centerY);
+}
+
+void move() {
+  if(keyPressed){
+    if(key == 'w'){
+        centerY = centerY - 2;
+      } 
+      if(key == 'a'){
+        centerX = centerX - 2;
+      }
+      if(key == 'd'){
+        centerX = centerX + 2;
+      } 
+      if(key == 's'){
+        centerY = centerY + 2;
+      }
+  }
+}
+}
+
+class Timer{
+  int savedTime;  // When Timer started
+  int totalTime;  // How long Timer should last
+  
+  // The constructor, set how long the Timer last with integer value
+  Timer(int _totalTime){
+    totalTime = _totalTime;
+  }
+  
+  // Start the Timer
+  void start() {
+    savedTime = millis();
+  }
+  
+  boolean isFinished() {
+   // check how much time has passed
+   int passedTime = millis() - savedTime;
+   if (passedTime > totalTime) {
+     return true;
+   } else {
+     return false;
+   }
+  }
+}
+
 
   </script>
   <canvas id="mycanvas1"></canvas>
