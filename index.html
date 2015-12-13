@@ -503,7 +503,109 @@ void bsod(){
   <h1>Your Sketch4 Title</h1>
   <script type="text/processing" data-processing-target="mycanvas4">
   
-  <!-- Your sketch4 goes here -->
+ int num = 4;
+PImage[] loc = new PImage[num];
+PImage pilgrim;
+PImage turk;
+Turk t = new Turk();
+Pilgrim p = new Pilgrim();
+Timer o;
+
+void setup () {
+  size(1280,720);
+ 
+  for (int i=0; i<loc.length; i++){
+  loc[i] = loadImage( str(i) + ".jpg");
+  
+  
+  pilgrim = loadImage("https://cloud.githubusercontent.com/assets/14263648/11770319/c1adb4b0-a1c0-11e5-846b-656ef3baa7ca.png");
+  turk = loadImage("https://cloud.githubusercontent.com/assets/14263648/11770318/c1ad0178-a1c0-11e5-89c3-682b0994cf7d.png");
+
+  o = new Timer(10000);
+}
+}
+
+void draw() {
+
+t.display(); 
+t.move();
+p.display();
+p.move();
+
+if (o.isFinished()){
+   image(loc[(int)random(num)],0,0);
+ }
+   
+
+} 
+
+class Turk{
+  int centerX;
+  
+  Turk(){
+    centerX = (width/2);
+  }
+  
+  void display(){
+    image(turk ,centerX, 500);
+}
+
+void move() {
+  if(keyPressed){
+      if(key == 'd'){
+        centerX = centerX + 2;
+      } 
+
+  }
+}
+}
+
+class Pilgrim{
+  int centerX;
+  
+  Pilgrim(){
+    centerX = (width/2);
+  }
+  
+  void display(){
+    image(pilgrim ,centerX, 500);
+}
+
+void move() {
+  if(keyPressed){
+      if(key == 'l'){
+        centerX = centerX + 2;
+      } 
+
+  }
+}
+}
+
+class Timer{
+  int savedTime;  // When Timer started
+  int totalTime;  // How long Timer should last
+  
+  // The constructor, set how long the Timer last with integer value
+  Timer(int _totalTime){
+    totalTime = _totalTime;
+  }
+  
+  // Start the Timer
+  void start() {
+    savedTime = millis();
+  }
+  
+  boolean isFinished() {
+   // check how much time has passed
+   int passedTime = millis() - savedTime;
+   if (passedTime > totalTime) {
+     return true;
+   } else {
+     return false;
+   }
+  }
+}
+
 
   </script>
   <canvas id="mycanvas4"></canvas>
