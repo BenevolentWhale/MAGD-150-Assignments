@@ -8,11 +8,11 @@ Salamander2 s2 = new Salamander2(width/2, 2.0);
 
 void setup() {
   size(1280, 720);
-  pizza = loadImage("pizza.png");
-  pineapple = loadImage("pineapple.png");
-  ricecake = loadImage("ricecake.png");
-  steve = loadImage("steve.png");
-  salamander = loadImage("salamander.png");
+  pizza = loadImage("https://cloud.githubusercontent.com/assets/14263648/11770123/af23f6fa-a1bc-11e5-8836-56746a277103.png");
+  pineapple = loadImage("https://cloud.githubusercontent.com/assets/14263648/11770122/af23cb58-a1bc-11e5-8437-af0017e2a35d.png");
+  ricecake = loadImage("https://cloud.githubusercontent.com/assets/14263648/11770120/af208bfa-a1bc-11e5-9ce0-b6e9b2246573.png");
+  steve = loadImage("https://cloud.githubusercontent.com/assets/14263648/11770121/af20c1a6-a1bc-11e5-82cd-72ef6473993b.png");
+  salamander = loadImage("https://cloud.githubusercontent.com/assets/14263648/11770124/af24f64a-a1bc-11e5-81c7-75b26c6532db.png");
 }
 
 void draw() {
