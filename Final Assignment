@@ -47,11 +47,11 @@ void setup(){
   
   k = new Kojima();
   
-  snake = loadImage("snake.png");
-  a = loadImage("a.png");
-  b = loadImage("b.png");
-  c = loadImage("c.png");  
-  kojima = loadImage("kojima.png");
+  snake = loadImage("https://cloud.githubusercontent.com/assets/14263648/11765295/49792c68-a116-11e5-8632-da8fb48938ac.png");
+  a = loadImage("https://cloud.githubusercontent.com/assets/14263648/11765294/49789f32-a116-11e5-8605-2dd566519b0e.png");
+  b = loadImage("https://cloud.githubusercontent.com/assets/14263648/11765292/49786562-a116-11e5-9642-47593806a5d6.png");
+  c = loadImage("https://cloud.githubusercontent.com/assets/14263648/11765290/49780626-a116-11e5-8e24-a4e9d48e701b.png");  
+  kojima = loadImage("https://cloud.githubusercontent.com/assets/14263648/11765291/49783b96-a116-11e5-9edf-c8ab52ec53d9.png");
   gameover = new Alert();
   
   
