@@ -5,7 +5,181 @@
   <h1>Totally Gumbo Processing Stuff</h1>
   <script type="text/processing" data-processing-target="mycanvas-final">
   
-  <!-- Your FINAL SKETCH goes here -->
+   class Alert{
+boolean O() {
+String alert;
+int t2 = 25;
+int t = t2-int(second());
+ if (t <= 0) {
+    return true;
+  }else{
+    return false;
+  }
+}  
+ }
+
+Kojima k;
+Alert gameover;
+ 
+ //guard collision
+  PVector guardUL;
+  PVector guardBL;
+  PVector guardUR;
+  PVector guardBR;
+  
+  
+  //images
+  PImage snake;
+  PImage a;
+  PImage b;
+  PImage c;
+  PImage kojima;
+  
+  //states
+  int stateCount = 0;
+  int state = 0;
+  int s = round(random(0,2));
+  
+  //Timer
+  Alert g = new Alert();
+ 
+
+void setup(){
+  size(1280, 720);
+
+  guardUL = new PVector(465, 0);
+  guardUR = new PVector(815, 0);
+  guardBL = new PVector(465, 720);
+  guardBR = new PVector(815, 720);
+  
+  k = new Kojima();
+  
+  snake = loadImage("https://cloud.githubusercontent.com/assets/14263648/11765295/49792c68-a116-11e5-8632-da8fb48938ac.png");
+  a = loadImage("https://cloud.githubusercontent.com/assets/14263648/11765294/49789f32-a116-11e5-8605-2dd566519b0e.png");
+  b = loadImage("https://cloud.githubusercontent.com/assets/14263648/11765292/49786562-a116-11e5-9642-47593806a5d6.png");
+  c = loadImage("https://cloud.githubusercontent.com/assets/14263648/11765290/49780626-a116-11e5-8e24-a4e9d48e701b.png");  
+  kojima = loadImage("https://cloud.githubusercontent.com/assets/14263648/11765291/49783b96-a116-11e5-9edf-c8ab52ec53d9.png");
+  gameover = new Alert();
+  
+  
+}
+
+void draw(){
+ background(255);
+ imageMode(CENTER);
+
+//Kojima
+k.display();
+k.move();
+ 
+ //Timer
+String alert;
+int t2 = 59;
+int t = t2-int(second());
+alert = nfc(t);
+
+ 
+ //Gaurd on alert
+ if(mouseX > 465 && mouseX < 815 && mouseY > 0 && mouseY < 720 ){
+   rectMode(CENTER);
+   fill(255, 0, 0, 100);
+   rect(1100, 150, 300, 225);
+   fill(255,0,0);
+   textSize(72);
+   textAlign(CENTER);
+   text("!", 630, 150);
+   fill(0);
+   textSize(72);
+   text("ALERT", 1100, 100);
+   textSize(150);
+   text((alert), 1100, 250);
+
+//Life Bar
+  if(keyPressed){
+        rectMode(CORNER);
+        fill(0, 0, 0, 100);
+        rect(50, 50, 400, 20);
+        fill(255,75,25);
+        rect(50, 50, 250, 20);
+        textSize(24);
+        fill(0, 0, 0, 100);
+        rectMode(CENTER);
+        rect(95, 70, 70, 20);
+        fill(255);
+        text("LIFE", 95, 80);
+        redraw();
+   }
+ } else {
+    //la le lu li lo
+  }
+
+
+//states
+if (state == 0) {
+    // put all the code you want for state 0 here.
+    image(a, 640, 400);
+  }
+  if (state == 1) {
+    // put all the code you want for state 0 here.
+    image(b, 640, 400);
+  }
+  if (state == 2) {
+    // put all the code you want for state 0 here.
+    image(c, 665, 400);
+  }
+  state = s;
+  
+//Snake in a box
+  image(snake, mouseX, 607.5);
+  String cambell;
+int c2 = 59;
+int c = c2-int(second());
+alert = nfc(c);
+if (c <= 0) {
+  textAlign(CENTER);
+   rectMode(CENTER);
+   fill(0);
+   rect(640,360,1280,720);
+   fill(255);
+   text("FISSION MAILED", width/2, height/2);
+   textSize(34);
+   text("SNAAAKE!!!", 640, 700);
+  //F 
+   noLoop();
+ }
+}
+
+
+class Kojima{
+  int centerX, centerY;
+  
+  Kojima(){
+    centerX = (width/2);
+    centerY = (width/2);
+  }
+  
+  void display(){
+    image(kojima ,centerX, centerY);
+}
+
+void move() {
+  if(keyPressed){
+    if(key == 'w'){
+        centerY = centerY - 2;
+      } 
+      if(key == 'a'){
+        centerX = centerX - 2;
+      }
+      if(key == 'd'){
+        centerX = centerX + 2;
+      } 
+      if(key == 's'){
+        centerY = centerY + 2;
+      }
+  }
+}
+}
+
 
   </script>
   <canvas id="mycanvas-final"></canvas>
